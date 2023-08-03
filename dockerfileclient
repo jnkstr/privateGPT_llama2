@@ -1,0 +1,33 @@
+FROM ubuntu
+
+USER root
+RUN mkdir AI-Test
+RUN chown root:root AI-Test
+
+RUN apt-get update -y
+RUN apt-get upgrade -y
+RUN apt-get install -y apt-utils
+RUN apt-get install -y git
+#ENV PYTHONUNBUFFERED=1
+#RUN apt-get install -y python3
+#RUN apt-get install -y nodejs
+#RUN apt-get install -y python3-pip
+
+RUN git clone https://github.com/SamurAIGPT/privateGPT.git /home/patrick/AI-Test
+WORKDIR /home/patrick/AI-Test/client
+#WORKDIR /home/patrick/AI-Test/server
+
+EXPOSE 3000
+
+#RUN pip3 install -r requirements.txt
+#CMD python3 privateGPT.py
+
+RUN apt-get -y install curl
+# get install script and pass it to execute: 
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash
+# and install node 
+RUN apt-get install nodejs
+#ADD https://gpt4all.io/models/ggml-gpt4all-j-v1.3-groovy.bin /home/patrick/AI-Test/models/
+
+RUN npm install
+CMD npm run dev
