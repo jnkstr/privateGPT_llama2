@@ -11,4 +11,4 @@ Hilfreiche Antwort in deutsch:
 """
 
 PROMPT = PromptTemplate(
-    template=prompt_template, input_variables=["context", "question"]
+    template=prompt_template, input_variables=["context", "question"])
